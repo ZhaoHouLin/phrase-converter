@@ -22,7 +22,7 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      viewport: "width=500, initial-scale=1",
+      viewport: "width=device-width, initial-scale=1",
       title: "加密助記詞轉換器",
       meta: [
         {
