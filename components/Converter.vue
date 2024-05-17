@@ -2,15 +2,26 @@
 import gsap from "gsap"
 import IconOpen from "./icons/IconOpen.vue"
 
-const valInput = ref("")
+const decoder = ref(null)
 
 const cryption = useCryption()
 
 const isOpen = ref(false)
 
-const test = () => {
+const open = () => {
+  const width = window.innerWidth
   isOpen.value = !isOpen.value
-  if (isOpen.value) {
+  if (width < 600 && isOpen.value) {
+    gsap.to(".decoder", {
+      y: 340,
+    })
+    gsap.to(".convert", {
+      y: -160,
+    })
+    gsap.to(".open", {
+      rotation: 90,
+    })
+  } else if (width > 600 && isOpen.value) {
     gsap.to(".decoder", {
       x: 180,
     })
@@ -23,9 +34,11 @@ const test = () => {
   } else {
     gsap.to(".decoder", {
       x: 0,
+      y: 0,
     })
     gsap.to(".convert", {
       x: 0,
+      y: 0,
     })
     gsap.to(".open", {
       rotation: 0,
@@ -33,9 +46,29 @@ const test = () => {
   }
 }
 
-// const clear = () => {
-//   valInput.value.forEach((item) => (item.value = ""))
-// }
+// Function to run GSAP animation based on width
+const runAnimation = () => {
+  const width = window.innerWidth
+  isOpen.value = false
+
+  gsap.to(".decoder", {
+    x: 0,
+    y: 0,
+  })
+  gsap.to(".convert", {
+    x: 0,
+    y: 0,
+  })
+  gsap.to(".open", {
+    rotation: 0,
+  })
+  if (width < 600) {
+  }
+}
+
+onMounted(() => {
+  window.addEventListener("resize", runAnimation)
+})
 </script>
 
 <template lang="pug">
@@ -46,7 +79,7 @@ const test = () => {
       h3 {{item.title}}
       //- input( :placeholder="item.code" @input="convert($event,key)" @blur="clear" ref="valInput" )
       input( @input="cryption.convert($event,key)" ref="valInput" :value="item.code")
-  .open(@click='test')
+  .open(@click='open')
     IconOpen
 </template>
 

@@ -19,7 +19,7 @@ const decoding = () => {
 </script>
 
 <template lang="pug">
-.decoder(style="-webkit-app-region: drag")
+.decoder(style="-webkit-app-region: drag" ref='decoder')
   .encryption-code 
     h3 加密代碼
     textarea(v-model="inputCode")
