@@ -1,12 +1,12 @@
-import englishCodeData from "../Data/english.js"
-import chineseTrCodeData from "../Data/chinese_traditional.js"
-import japaneseCodeData from "../Data/japanese.js"
-import koreanCodeData from "../Data/korean.js"
-import frenchCodeData from "../Data/french.js"
-import italianCodeData from "../Data/italian.js"
-import czechCodeData from "../Data/czech.js"
-import spanishCodeData from "../Data/spanish.js"
-import portugueseCodeData from "../Data/portuguese.js"
+import englishCodeData from "../data/english.js"
+import chineseTrCodeData from "../data/chinese_traditional.js"
+import japaneseCodeData from "../data/japanese.js"
+import koreanCodeData from "../data/korean.js"
+import frenchCodeData from "../data/french.js"
+import italianCodeData from "../data/italian.js"
+import czechCodeData from "../data/czech.js"
+import spanishCodeData from "../data/spanish.js"
+import portugueseCodeData from "../data/portuguese.js"
 
 export const useCryption = () => {
   const numberCodeData = Array.from({ length: englishCodeData.length }, (_, i) =>
