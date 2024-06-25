@@ -1,12 +1,12 @@
-import englishCodeData from "../data/english"
-import chineseTrCodeData from "../data/chinese_traditional"
-import japaneseCodeData from "../data/japanese"
-import koreanCodeData from "../data/korean"
-import frenchCodeData from "../data/french"
-import italianCodeData from "../data/italian"
-import czechCodeData from "../data/czech"
-import spanishCodeData from "../data/spanish"
-import portugueseCodeData from "../data/portuguese"
+import englishCodeData from "../Data/english"
+import chineseTrCodeData from "../Data/chinese_traditional"
+import japaneseCodeData from "../Data/japanese"
+import koreanCodeData from "../Data/korean"
+import frenchCodeData from "../Data/french"
+import italianCodeData from "../Data/italian"
+import czechCodeData from "../Data/czech"
+import spanishCodeData from "../Data/spanish"
+import portugueseCodeData from "../Data/portuguese"
 
 export const useCryption = () => {
   const numberCodeData = Array.from({ length: englishCodeData.length }, (_, i) =>
@@ -66,7 +66,8 @@ export const useCryption = () => {
       code: "",
     },
   })
-  const decodeResult = ref('')
+  const encryptionCode = ref('')
+  const decryptionCode = ref('')
 
   const convert = (e, key) => {
     let idx = dataArray[key].findIndex((word) => {
@@ -84,12 +85,31 @@ export const useCryption = () => {
     convertResult.numberCodeData.code = numberCodeData[idx]
   }
 
-  const decrypt = (code) => {
-    const codeArray = code.split(",")
-    const decodeArray = codeArray.map((item) => {
+  //  加密
+  const encrypt = () => {
+    const replaceSpace = decryptionCode.value.replace(/-|\s/g, ",")
+    const wordData = replaceSpace.split(",")
+    const result = wordData.filter((word) => {
+      if (word) return true
+    }).map((word) => {
+      const idxArr = dataArray['englishCodeData'].findIndex((item) => {
+        return word == item
+      })
+      return idxArr
+    })
+
+    decryptionCode.value = ''
+    encryptionCode.value = result.join().replaceAll(",", "-")
+  }
+  //  解密
+  const decrypt = () => {
+    const replaceSpace = encryptionCode.value.replace(/-|\s/g, ",")
+    const numberData = replaceSpace.split(",")
+    const result = numberData.map((item) => {
       return englishCodeData[item]
     })
-    decodeResult.value = decodeArray.join().replaceAll(",", " ")
+    encryptionCode.value = ''
+    decryptionCode.value = result.join().replaceAll(",", " ")
 
   }
 
@@ -97,6 +117,8 @@ export const useCryption = () => {
     convertResult,
     convert,
     decrypt,
-    decodeResult
+    decryptionCode,
+    encrypt,
+    encryptionCode
   }
 }

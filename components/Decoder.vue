@@ -1,34 +1,20 @@
 <script setup>
 import IconExchangeAlt from "./icons/IconExchangeAlt.vue"
-
-const inputCode = ref("")
-
-const result = ref("")
-
 const cryption = useCryption()
-
-const decoding = () => {
-  // console.log(inputCode.value)
-  // const result = inputCode.value.split("\n")
-  // const result = inputCode.value.replace(/\n/g, ",")
-  // result.value = inputCode.value.replace(/-|\n/g, ",")
-  // \s 匹配任何空白字符，包括空格、制表符、換行符等
-  result.value = inputCode.value.replace(/-|\s/g, ",")
-  cryption.decrypt(result.value)
-}
 </script>
 
 <template lang="pug">
 .decoder(style="-webkit-app-region: drag" ref='decoder')
   .encryption-code 
     h3 加密代碼
-    textarea(v-model="inputCode")
+    textarea(v-model="cryption.encryptionCode.value")
+  button(@click="cryption.decrypt()") 解碼
   .icon
     IconExchangeAlt
   .decryption-code 
-    h3 解密結果
-    textarea(v-model="cryption.decodeResult.value")
-  button(@click="decoding") 解碼
+    h3 解密代碼 
+    textarea(v-model="cryption.decryptionCode.value")
+  button(@click="cryption.encrypt()") 加密
   
 </template>
 
@@ -83,7 +69,8 @@ const decoding = () => {
   .icon
     size(32px)
     align-self center
-    margin 1rem
+    // margin 1rem
+    margin-bottom 1rem
     transform rotate(90deg)
     svg
       fill url(#exchange-alt-gradient)
