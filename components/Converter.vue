@@ -14,14 +14,16 @@ const open = () => {
   if (width < 600 && isOpen.value) {
     gsap.to(".decoder", {
       // y: 340,
-      x: 360,
+      // x: 360,
+      y: -80,
     })
     gsap.to(".convert", {
       // y: -160,
+      y: 400,
     })
     gsap.to(".open", {
-      // rotation: 90,
-      rotation: 180,
+      rotation: -90,
+      // rotation: 180,
     })
   } else if (width > 600 && isOpen.value) {
     gsap.to(".decoder", {
@@ -53,17 +55,17 @@ const runAnimation = () => {
   const width = window.innerWidth
   isOpen.value = false
 
-  gsap.to(".decoder", {
-    x: 0,
-    y: 0,
-  })
-  gsap.to(".convert", {
-    x: 0,
-    y: 0,
-  })
-  gsap.to(".open", {
-    rotation: 0,
-  })
+  // gsap.to(".decoder", {
+  //   x: 0,
+  //   y: 0,
+  // })
+  // gsap.to(".convert", {
+  //   x: 0,
+  //   y: 0,
+  // })
+  // gsap.to(".open", {
+  //   rotation: 0,
+  // })
   if (width < 600) {
   }
 }
