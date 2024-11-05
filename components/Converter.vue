@@ -13,20 +13,22 @@ const open = () => {
   isOpen.value = !isOpen.value
   if (width < 600 && isOpen.value) {
     gsap.to(".decoder", {
-      y: 340,
+      // y: 340,
+      x: 360,
     })
     gsap.to(".convert", {
-      y: -160,
+      // y: -160,
     })
     gsap.to(".open", {
-      rotation: 90,
+      // rotation: 90,
+      rotation: 180,
     })
   } else if (width > 600 && isOpen.value) {
     gsap.to(".decoder", {
-      x: 180,
+      x: 360,
     })
     gsap.to(".convert", {
-      x: -180,
+      // x: -180,
     })
     gsap.to(".open", {
       rotation: 180,
